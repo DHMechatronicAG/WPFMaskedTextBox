@@ -285,6 +285,17 @@ namespace WPFMaskedTextBox
 					}
 					e.Handled = true;
 					break;
+				case Key.V:
+					if ((e.Key == Key.V) && (e.KeyboardDevice.Modifiers & ModifierKeys.Control) != 0)
+					{
+						//Paste (Ctrl+V)
+						if (provider.InsertAt(Clipboard.GetText(), position))
+						{
+							RefreshText(provider, position);
+						}
+						e.Handled = true;
+					}
+					break;
 			}
 		}
 
