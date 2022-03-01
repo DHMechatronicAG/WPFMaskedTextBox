@@ -15,6 +15,9 @@
         <PackageTags>MaskedTextBox WPF</PackageTags>
         <Description>WPF MaskedTextBox</Description>
         <PackageId>WPFMaskedTextBox</PackageId>
+        <SignAssembly>True</SignAssembly>
+        <AssemblyOriginatorKeyFile>..\WPFMaskedTextBox.snk</AssemblyOriginatorKeyFile>
+        <DelaySign>False</DelaySign>
     </PropertyGroup>
 
 </Project>
