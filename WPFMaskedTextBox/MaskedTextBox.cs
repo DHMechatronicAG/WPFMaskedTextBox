@@ -14,7 +14,7 @@ namespace WPFMaskedTextBox
 		/// <summary>
 		/// Gets or sets the cached mask to apply to the TextBox
 		/// </summary>
-		private MaskedTextProvider? MaskProviderCached
+		private MaskedTextProvider MaskProviderCached
 		{
 			get => (MaskedTextProvider)GetValue(MaskProviderCachedProperty);
 			set => SetValue(MaskProviderCachedProperty, value);
@@ -44,7 +44,7 @@ namespace WPFMaskedTextBox
 		/// <summary>
 		/// Gets the MaskTextProvider for the specified Mask
 		/// </summary>
-		public MaskedTextProvider? MaskProvider
+		public MaskedTextProvider MaskProvider
 		{
 			get
 			{
@@ -168,14 +168,14 @@ namespace WPFMaskedTextBox
 		}
 
 		//force the text of the control to use the mask
-		private static object? ForceText(DependencyObject sender, object? value)
+		private static object ForceText(DependencyObject sender, object value)
 		{
 			if (sender is MaskedTextBox textBox)
 			{
 				if (!string.IsNullOrEmpty(textBox.Mask))
 				{
 					var provider = textBox.MaskProvider;
-					if (provider is not null)
+					if (provider != null)
 					{
 						provider.Set($@"{value}");
 						return provider.ToDisplayString();
@@ -203,7 +203,7 @@ namespace WPFMaskedTextBox
 			var position = SelectionStart;
 			var provider = MaskProvider;
 			var ifIsPositionInMiddle = position < Text.Length;
-			if (provider is not null)
+			if (provider != null)
 			{
 				if (ifIsPositionInMiddle)
 				{
@@ -304,9 +304,9 @@ namespace WPFMaskedTextBox
 		#region Helper Methods
 
 		//refreshes the text of the TextBox
-		private void RefreshText(MaskedTextProvider? provider, int position)
+		private void RefreshText(MaskedTextProvider provider, int position)
 		{
-			if (provider is not null)
+			if (provider != null)
 			{
 				Text = provider.ToDisplayString();
 				SelectionStart = position;
@@ -316,7 +316,7 @@ namespace WPFMaskedTextBox
 		//gets the next position in the TextBox to move
 		private int GetNextCharacterPosition(int startPosition)
 		{
-			if (MaskProvider is not null)
+			if (MaskProvider != null)
 			{
 				var position = MaskProvider.FindEditPositionFrom(startPosition, true);
 				if (position != -1)

@@ -7,10 +7,10 @@ namespace WPFMaskedTextBox
 {
 	public class FilterProvider
 	{
-		private static readonly Lazy<FilterProvider> InstanceLazy = new(() => new FilterProvider());
+		private static readonly Lazy<FilterProvider> InstanceLazy = new Lazy<FilterProvider>(() => new FilterProvider());
 		public static FilterProvider Instance => InstanceLazy.Value;
 
-		private readonly Dictionary<FilterType, DefaultFilter> _predefinedFilters = new();
+		private readonly Dictionary<FilterType, DefaultFilter> _predefinedFilters = new Dictionary<FilterType, DefaultFilter>();
 
 		private FilterProvider()
 		{

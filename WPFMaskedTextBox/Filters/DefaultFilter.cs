@@ -5,10 +5,10 @@ namespace WPFMaskedTextBox.Filters
 {
 	public class DefaultFilter
 	{
-		private Func<string, bool>? _isTextValidCheckers;
+		private Func<string, bool> _isTextValidCheckers;
 
-		public static readonly DefaultFilter IntegerFilter = new(item => int.TryParse(item, out _));
-		public static readonly DefaultFilter NullFilter = new();
+		public static readonly DefaultFilter IntegerFilter = new DefaultFilter(item => int.TryParse(item, out _));
+		public static readonly DefaultFilter NullFilter = new DefaultFilter();
 
 		public DefaultFilter() { }
 
@@ -34,11 +34,12 @@ namespace WPFMaskedTextBox.Filters
 
 			foreach (var isTextValidChecker in _isTextValidCheckers.GetInvocationList())
 			{
-				if (isTextValidChecker is not Func<string, bool> checker)
+				Func<string, bool> checker = isTextValidChecker as Func<string, bool>;
+
+				if (checker is null)
 				{
 					continue;
-				}
-				if (!checker(newText))
+				} else if (!checker.Invoke(newText))
 				{
 					return false;
 				}
