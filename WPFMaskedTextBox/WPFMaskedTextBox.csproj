@@ -17,13 +17,22 @@
         <SignAssembly>True</SignAssembly>
         <AssemblyOriginatorKeyFile>..\WPFMaskedTextBox.snk</AssemblyOriginatorKeyFile>
         <DelaySign>False</DelaySign>
+        <Platforms>AnyCPU;x64</Platforms>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
       <Deterministic>True</Deterministic>
     </PropertyGroup>
 
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      <Deterministic>True</Deterministic>
+    </PropertyGroup>
+
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+      <Deterministic>True</Deterministic>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       <Deterministic>True</Deterministic>
     </PropertyGroup>
 
